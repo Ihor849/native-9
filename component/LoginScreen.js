@@ -59,7 +59,7 @@ const LoginScreen = () => {
       }
     );
 
-    // Clean up the listeners when the component unmounts
+    
     return () => {
       keyboardDidShowListener.remove();
       keyboardDidHideListener.remove();
@@ -110,8 +110,6 @@ const LoginScreen = () => {
 
     dispatch(signIn(userData));
   
-    // console.log(userData);
-    // navigation.navigate("Home")
   };
 
   return (
@@ -132,7 +130,7 @@ const LoginScreen = () => {
           }}
         >
           <Text 
-          // onPress={()=> navigation.navigate("CreatePost")}
+        
             style={{ ...regStyles.title, color: time ? "crimson" : "#212121" }}
           >
             {message && time ? "Wasted" : "Увійти"}

@@ -28,16 +28,14 @@ import {
   getData,
   resetData,
   gpsDefault,
-  getPlaces,
-  publishedData,
 } from "../../utils/dataStorage";
 import { useAuth } from "../../redux/auth/authSelectors";
 
-const item = gpsDefault;
+
 
 const ProfileScreen = ({route}) => {
 
-//   const [posts, setPosts] = useState(getData());
+
   const [posts, setPosts] = useState([]);
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -51,18 +49,14 @@ const ProfileScreen = ({route}) => {
     );
   };
 
-  //   const deleteAvatarFromUser = async () => {
-  //     dispatch(deleteAvatar());
-  //   };
+
 
   useEffect(() => {
     getPostsByCurrentUser();
   }, [route.params]);
 
 
-//   useEffect(() => {
-//     setPosts(getData());
-//   }, [publishedData]);
+
 
   return (
     <>
@@ -88,10 +82,10 @@ const ProfileScreen = ({route}) => {
             </ImageBackground>
             <TouchableOpacity
               onPress={() => {
-                // console.log("exit");
+                
                 dispatch(logOut())
                 resetData();
-                // navigation.navigate("Login");
+                
               }}
               style={styles.trayArrowBtn}
             >
@@ -181,7 +175,7 @@ const ProfileScreen = ({route}) => {
           <Feather style={[]} name="grid" size={24} />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() => navigation.navigate("Profile")}
+          
           style={postStyles.addBtn}
         >
           <Feather name="user" size={24} color="#eee" />

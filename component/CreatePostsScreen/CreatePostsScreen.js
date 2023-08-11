@@ -28,13 +28,10 @@ import {addData } from "../../utils/dataStorage";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../firebase/config";
 import {  collection, doc, serverTimestamp, setDoc, } from "firebase/firestore";
-// import { getTheme, useAuth } from "../../redux/auth/authSelectors";
 import Toast from "react-native-root-toast";
 import { gpsDefault } from "../../utils/dataStorage";
-// import { lightTheme, darkTheme  } from "../../utils/themes";
-// import { useSelector } from "react-redux";
 import { useAuth } from "../../redux/auth/authSelectors";
-// import Loader from "../Loader/Loader";
+
 
 
 const CreatePostsScreen =() => {
@@ -68,7 +65,6 @@ const CreatePostsScreen =() => {
           }
         );
     
-        // Clean up the listeners when the component unmounts
         return () => {
           keyboardDidShowListener.remove();
           keyboardDidHideListener.remove();
@@ -86,7 +82,7 @@ const CreatePostsScreen =() => {
         
         if (snap) {
             let { uri } = await snap.takePictureAsync()
-            // await MediaLibrary.createAssetAsync(uri);
+           
             setPhoto(uri) 
 
             let locationUser =
@@ -131,7 +127,7 @@ const CreatePostsScreen =() => {
       const uploadPostToServer = async () => {
       
         try {
-          const uploadPhoto = await uploadPhotoToServer();//Add photo so storage/images
+          const uploadPhoto = await uploadPhotoToServer();
           const collectionRef = doc(collection(db, "posts"));
     
           await setDoc(collectionRef, {
@@ -212,11 +208,11 @@ const CreatePostsScreen =() => {
             location,
             gps,
         }
-        //  console.log(data)
+        
         uploadPostToServer();
          
-         addData(data); // Write data to dataStorage.js
-        //  navigation.navigate('Posts', {data})
+         addData(data);
+        
          navigation.navigate('Posts', {data})
          reset()
     }
@@ -350,7 +346,7 @@ export const styles = StyleSheet.create({
     },
     main: {       
         flex: 1,
-        alignSelf: 'stretch', // Stretch the main content to fill the width
+        alignSelf: 'stretch', 
         gap: 32,
         paddingBottom:60,
     },

@@ -1,4 +1,4 @@
-// import { useRoute } from "@react-navigation/native"
+
 import { useState } from "react"
 
 {!photo 

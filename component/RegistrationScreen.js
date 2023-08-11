@@ -17,14 +17,8 @@ import BackgroundImage from "../assets/image/BackgroundImage.png";
 import { AntDesign } from "@expo/vector-icons";
 import User from "../assets/image/test.png";
 import { useNavigation } from "@react-navigation/native";
-// import { resetData } from "../../utils/dataStorage";
 import { useDispatch } from "react-redux";
-// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { register } from "../redux/auth/authOperations";
-// import { storage } from "../firebase/config";
-// import avatar from 'C:/GitHub/Home-Work/test/assets/img/Avatar/av-01.jpg'
-
-// import { firebase } from "@react-native-firebase/storage";
 
 const RegistrationScreen = () => {
   const [login, setLogin] = useState("");
@@ -68,7 +62,7 @@ const RegistrationScreen = () => {
       }
     );
 
-    // Clean up the listeners when the component unmounts
+    
     return () => {
       keyboardDidShowListener.remove();
       keyboardDidHideListener.remove();
@@ -124,7 +118,7 @@ const RegistrationScreen = () => {
       password,
     };
     try {
-      // const avatarRef = await uploadAvatarToServer();
+     
 
       setLogin('')
       setEmail('')
@@ -134,10 +128,10 @@ const RegistrationScreen = () => {
       setIsValidName(false)
       setIsValidEmail(false)
       setIsValidPassword(false)
-      // resetData()
+     
 
       dispatch(register({ ...userData,
-        //  avatar: avatarRef ,
+        
         }));     
 
       
@@ -146,9 +140,9 @@ const RegistrationScreen = () => {
       
       setError(`Upload avatar to server error ${error.message}`);
     }
-    // console.log(userData);
+    
 
-    // navigation.navigate("Home")
+    
   };
 
   return (

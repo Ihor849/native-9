@@ -1,4 +1,4 @@
-// dataStorage.js
+
 
 let publishedData = [];
 

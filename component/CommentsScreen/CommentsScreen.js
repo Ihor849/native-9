@@ -15,7 +15,6 @@ import { styles as creStyles } from "../CreatePostsScreen/CreatePostsScreen";
 import { AntDesign } from "@expo/vector-icons";
 import AvImage0 from "../../assets/image/userAv.png";
 import { useNavigation } from "@react-navigation/native";
-import { dataComments } from "../../utils/dataStorage";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import {
@@ -74,10 +73,8 @@ const CommentsScreen = ({ route }) => {
         commentData
       );
     
-      // Get the newly generated commentId
       const newCommentId = commentRef.id;
     
-      // Now, update the commentRef with the newCommentId
       await updateDoc(commentRef, { commentId: newCommentId });
     
       setComment('');
@@ -90,17 +87,17 @@ const CommentsScreen = ({ route }) => {
       try {
       
         const dbRef = collection(db, `posts/${postId}/comments`);
-    // console.log(dbRef)
-          // Set up a real-time listener for the comments collection
+  
+          
           onSnapshot(dbRef, (querySnapshot) => {
-            // Get the number of comments in the collection (number of documents)
+            
             const count = querySnapshot.size;
       
-            // console.log('Number of comments:', count);
+            
           
     
             const collectionRef = doc(db, "posts", postId)
-            // console.log(collectionRef)
+           
              updateDoc(collectionRef, {
                 comments: count,
               });
@@ -116,19 +113,19 @@ const CommentsScreen = ({ route }) => {
     
         useEffect(() => {    
           getCommentsCount()
-    }, [postId, commentId]);  //commentId
+    }, [postId, commentId]);  
 
   const deleteComment = async (id) => {
 
     try {   
-      // Create a reference to the comment document
-      const commentRef = doc(db, `posts/${postId}/comments/${id}`);//${commentId}
+      
+      const commentRef = doc(db, `posts/${postId}/comments/${id}`);
       console.log('commentRef.path',commentRef.path)
       console.log(id)
 
-      // Delete the comment document from the Firestore
+    
       await deleteDoc(commentRef);        
-      // After successful deletion, update the comments state to reflect the changes
+      
       setAllComments((prevComments) =>
         prevComments.filter((comment) => comment.id !== commentId)
       );             
@@ -145,7 +142,7 @@ const CommentsScreen = ({ route }) => {
 
       querySnapshot.forEach((doc) => {
         comments.push(doc.data());
-        // console.log('data:', doc.data());
+        
       });
       setTimeout(() => {
         setAllComments(comments);
@@ -160,16 +157,16 @@ const CommentsScreen = ({ route }) => {
     getAllComments(postId);
   },[allComments])
     
-  //confirm
+  
   const handleConfirm = () => {
-    // Do something when the user confirms the action
+   
     deleteComment(commentId)
     console.log('Confirmed!');
     setShowConfirm(false);
   };
 
   const handleCancel = () => {
-    // Do something when the user cancels the action
+   
     console.log('Cancelled!');
     setShowConfirm(false);
   };
@@ -224,7 +221,7 @@ const CommentsScreen = ({ route }) => {
                     <TouchableOpacity
                     onPress={() => {
                     setShowConfirm(true) 
-                    setCommentId(item.commentId); // Pass item.commentId to handleConfirm
+                    setCommentId(item.commentId); 
                   }}
                   style={[ styles.deleteBtn]}>
                  <AntDesign 
@@ -328,7 +325,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontSize: 10,
     fontWeight: 500,
-    // alignSelf: 'flex-end',
+    
   },
   text: {
     color: "#bdbdbd",
@@ -340,8 +337,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 12,
     bottom: 12,
-    // fontSize: 16,
-    // fontWeight: 500,
+    
   },
   commemtBar: {
     position: "relative",
@@ -349,7 +345,7 @@ const styles = StyleSheet.create({
     width: 343,
     height: 50,
     marginBottom: 20,
-    // marginTop: -10,
+    
   },
   commemtInput: {
     flex: 1,
