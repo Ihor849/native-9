@@ -16,11 +16,11 @@ import { StatusBar } from "expo-status-bar";
 import BackgroundImage from "../assets/image/BackgroundImage.png";
 import { AntDesign } from "@expo/vector-icons";
 import User from "../assets/image/test.png";
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 // import { resetData } from "../../utils/dataStorage";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-// import { register } from "../redux/auth/authOperations";
+import { register } from "../redux/auth/authOperations";
 // import { storage } from "../firebase/config";
 // import avatar from 'C:/GitHub/Home-Work/test/assets/img/Avatar/av-01.jpg'
 
@@ -37,10 +37,12 @@ const RegistrationScreen = () => {
   const [message, setMessage] = useState("");
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
-  
+  const [error, setError] = useState(null);
 
-  // const navigation = useNavigation();
-  // const dispatch = useDispatch()
+  const [time, setTime] = useState(null);
+
+  const navigation = useNavigation();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (message) {
@@ -134,7 +136,9 @@ const RegistrationScreen = () => {
       setIsValidPassword(false)
       // resetData()
 
-       
+      dispatch(register({ ...userData,
+        //  avatar: avatarRef ,
+        }));     
 
       
     } catch (error) {
@@ -166,9 +170,9 @@ const RegistrationScreen = () => {
           </ImageBackground>
 
           <Text
-            style={{ ...styles.title}}
+            style={{ ...styles.title, color: time ? "crimson" : "#212121" }}
           >
-            Реєстрація
+            {message && time ? "Wasted" : "Реєстрація"}
           </Text>
 
           <View style={styles.form}>
@@ -196,8 +200,8 @@ const RegistrationScreen = () => {
                 <TextInput
                   style={styles.input}
                   name="password"
-                 
-                  
+                  value={password}
+                  onChangeText={validatePassword}
                   placeholder="Пароль"
                   placeholderTextColor="#bdbdbd"
                   secureTextEntry={!show}
@@ -220,7 +224,7 @@ const RegistrationScreen = () => {
             {!keyboardVisible && (
               <View style={styles.btnWrapp}>
                 <TouchableOpacity
-                  
+                  onPress={() => navigation.navigate("Login")}
                   style={styles.alreadyHaveAccount}
                 >
                   <Text style={styles.alreadyHaveAccountText}>
@@ -228,7 +232,7 @@ const RegistrationScreen = () => {
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.regBtn} >
+                <TouchableOpacity style={styles.regBtn} onPress={submit}>
                   <Text style={styles.regBtn__text}>Зареєстуватися</Text>
                 </TouchableOpacity>
               </View>
@@ -238,7 +242,7 @@ const RegistrationScreen = () => {
           <View
             style={{
               ...styles.homeIndicator,
-            
+              backgroundColor: keyboardVisible ? "#fff0" : "#212121",
             }}
           ></View>
         </View>

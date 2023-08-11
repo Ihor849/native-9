@@ -1,18 +1,26 @@
+import { useFonts } from "expo-font";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import Main from "./Main/Main";
 
-import { StyleSheet, Text, View } from 'react-native';
-import RegistrationScreen from './component/RegistrationScreen';
+
+
 
 export default function App() {
-  return (
-    <RegistrationScreen/>
-  );
+
+  const [fontsLoaded] = useFonts({
+    Roboto: require("./assets/Fonts/Roboto-Regular.ttf"),
+    RobotoMedium: require("./assets/Fonts/Roboto-Medium.ttf"),
+    RobotoBold: require("./assets/Fonts/Roboto-Bold.ttf"),
+});
+
+if (!fontsLoaded) {
+    return null;
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+return (
+    <Provider store={store }>
+        <Main/>
+    </Provider>
+)
+}
