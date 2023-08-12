@@ -44,5 +44,9 @@
   "private": true,
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://Ihor849.github.io/native-9/"
+  },
   "description": ""
 }

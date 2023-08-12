@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "native-3",
-    "slug": "native-3",
+    "name": "native-9",
+    "slug": "native-9",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,7 +29,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "1cea1ed4-c1b7-4873-9efb-c3124f2fafcb"
+        "projectId": "c23288a5-9960-408e-8a4b-cecc6d181759"
       }
     }
   }
